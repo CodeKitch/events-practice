@@ -4,6 +4,7 @@ const form = document.querySelector("#comment-form")
 const newComment = document.querySelector("#new-comment")
 const container = document.querySelector("#comments-container")
 const dogBtn = document.querySelector("#dog-btn") 
+const catBtn = document.querySelector("#cat-btn")
 // chooses first one div = div, # = id
 // get elementById = singular , getElementsByClassName = expects an argument, return plural
 
@@ -42,4 +43,21 @@ function fetchSubmit(){
 }
 
 //captureSubmit()  when invoking function
+
+
+catBtn.addEventListener('click', catFetchSubmit)
+
+function catFetchSubmit(){
+   
+    fetch('https://cat-fact.herokuapp.com/facts')
+    .then(x => x.json())
+    .then(y =>{
+        y.forEach(element => {
+            element.text  //new scope, so y doesn't have value here
+        container.append(element.text)
+        });
+        //map(makes new array) vs forEach(tough each element and do something with it and do not care the return value)
+    })
+}   
+
 
